@@ -4,6 +4,7 @@ author: "Jiayi Shi"
 date: "2022-11-03"
 output: github_document
 ---
+
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(rvest)
@@ -82,6 +83,7 @@ homicide_data = read_csv("data/homicide-data.csv")
 The raw data set has `r nrow(homicide_data)` homicides in 50 large US cities from 2007 to 2017. It contains `r ncol(homicide_data)` variables, including the id of the killing, the reported date, the basic demographic information about each victim (first name, last name, race, age and sex), the location of the killing (city, state, latitude and longitude) and whether an arrest was made.
 
 The code below createa a `city_state` variable and summarizes within cities to obtain the total number of homicides and the number of unsolved homicides. The result is solved in `table`.
+
 ```{r}
 homicide_data =
   mutate(homicide_data, city_state = str_c(city, state, sep = ", "))
