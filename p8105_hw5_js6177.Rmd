@@ -139,13 +139,16 @@ prop_ci = function(data){
 
 I use list columns to get estimated proportions and CIs for each city. I first nest the `total` and `unsolved` columns in `table` and then map it to the function I defined above.
 
+By the warning message, I check the data for Tulsa, AL, which only has one killing in total and zero unsolved case, so the Chi-squared approximation may be incorrect. Therefore, I mutate the confidence interval for this specific city accordingly.
+
 ```{r}
 prop_df =
   nest(table, data = total:unsolved) %>% 
   mutate(unsolved_data = map(.$data, prop_ci)) %>%
   unnest(unsolved_data) %>% 
   select(-data) %>% 
-  rename(conf_low = conf.low, conf_high = conf.high)
+  rename(conf_low = conf.low, conf_high = conf.high) %>% 
+  mutate(conf_high = replace(conf_high, city_state == "Tulsa, AL", 0))
 ```
 
 The code below create a plot that shows the estimates and CIs for each city.
@@ -158,11 +161,11 @@ prop_df %>%
   ggplot(aes(x = city_state, y = estimate))+
   geom_point()+
   geom_errorbar(aes(ymin = conf_low, ymax = conf_high))+
-  coord_flip()+
   labs(title = "Proportion of unsolved homicides for 50 U.S. cities", 
        x = "Proportion of unsolved homicides", 
        y = "City", 
-       caption = "Error bars represent 95% confidence interval")
+       caption = "Error bars represent 95% confidence interval") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.2, hjust = 1))
 ```
 
 ## Problem 3
