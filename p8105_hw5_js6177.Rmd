@@ -236,7 +236,7 @@ sim_df %>%
 
 From the plot, we can see that when the effect size increases, the power increases, but the increasing rate get smaller and tends to 0.
 
-The plot below shows the average estimate of $\hat{\mu}$ and the average estimate of $\hat{\mu}$ only in samples for which the null was rejected vs the true $\mu$
+The plot below shows the average estimate of $\hat{\mu}$ and the average estimate of $\hat{\mu}$ only in samples for which the null was rejected vs the true $\mu$.
  
 ```{r}
 sim_df %>% 
@@ -262,7 +262,8 @@ sim_df %>%
   geom_path()+
   labs(
     x = "True mu",
-    y = "Average estimate of mu_hat"
+    y = "Average estimate of mu_hat",
+    caption = "1: average estimate of mu_hat,\n 2: average estimate of mu_hat only in samples for which the null was rejected "
   )
 ```
 
