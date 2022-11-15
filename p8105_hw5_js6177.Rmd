@@ -267,5 +267,5 @@ sim_df %>%
   )
 ```
 
-The sample average of $\hat{\mu}$ across tests for which the null is rejected approximately equal to the true value of $\mu$ only when effect size/power of the test is large. 
+The sample average of $\hat{\mu}$ across tests for which the null is rejected approximately equal to the true value of $\mu$ only when effect size/power of the test is large. This is because as the statistical power of a hypothesis test increases, the probability of detecting an effect increases, if there is a true effect present to detect. The proportion of experiments in which the null is rejected among the total 5000 increases, so the average of $\hat{\mu}$ across tests for which the null is rejected approaches that accross all samples.
 
